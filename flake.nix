@@ -19,7 +19,7 @@
     { overlays.default = curl-http3-overlay; } //
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; overlays = [ curl-http3-overlay ]; };
+        pkgs = import nixpkgs { inherit system; overlays = [ self.overlays.default ]; };
       in
       {
         packages.default = pkgs.curl-http3;
