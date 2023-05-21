@@ -16,7 +16,12 @@
           };
         });
     in
-    { overlays.default = curl-http3-overlay; } //
+    {
+      overlays = {
+        default = self.overlays.curl-http3-overlay;
+        inherit curl-http3-overlay;
+      };
+    } //
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; overlays = [ self.overlays.default ]; };
